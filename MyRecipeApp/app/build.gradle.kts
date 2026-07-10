@@ -31,6 +31,7 @@ android {
     buildFeatures {
         compose = true
     }
+    compileSdkMinor = 0
 }
 
 dependencies {
@@ -42,7 +43,14 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    // compose viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // image loading
+    implementation(libs.coil.compose) // from v262
+    // network calls
+    implementation(libs.retrofit) //from v290
+    //json to kotlin object mapping
+    implementation(libs.converter.gson) // from v290
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

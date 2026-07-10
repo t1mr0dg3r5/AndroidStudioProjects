@@ -52,7 +52,7 @@ fun MyRecipeAppTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = MaterialTheme.typography,
         content = content
     )
 }

@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import net.uk.rodgers.myrecipeapp.ui.theme.MyRecipeAppTheme
 
+//https://www.themealdb.com/api/json/v1/1/categories.php
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
