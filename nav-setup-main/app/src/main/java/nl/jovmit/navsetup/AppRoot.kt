@@ -1,0 +1,50 @@
+ package nl.jovmit.navsetup
+
+import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import nl.jovmit.navsetup.composer.navigateToComposer
+import nl.jovmit.navsetup.login.LoginDestination
+import nl.jovmit.navsetup.login.loginScreen
+import nl.jovmit.navsetup.main.mainScreen
+import nl.jovmit.navsetup.main.navigateToMain
+import nl.jovmit.navsetup.signup.navigateToSignUp
+import nl.jovmit.navsetup.signup.signUpScreen
+import nl.jovmit.navsetup.emaildetails.navigateToEmailDetails
+import nl.jovmit.navsetup.composer.composerScreenRoot
+import nl.jovmit.navsetup.emaildetails.emailDetailsScreen
+
+ @Composable
+fun AppRoot() {
+
+  val navController = rememberNavController()
+
+  NavHost(
+      navController = navController,
+      startDestination = LoginDestination
+  ) {
+      loginScreen(
+          onNavigateToSignUp = { navController.navigateToSignUp() },
+          onNavigateToMain = {navController.navigateToMain() }
+      )
+      signUpScreen(
+          onNavigateToMain = {navController.navigateToMain()},
+          onNavigateUp = {navController.navigateUp()}
+      )
+      mainScreen(
+          onOpenEmailDetails = { emailId: Int -> navController.navigateToEmailDetails(emailId) },
+          onComposeNewEmail = { navController.navigateToComposer()}
+      )
+      emailDetailsScreen(
+          onReplyToEmail = { navController.navigateToComposer() } ,
+          onNavigateUp = { navController.navigateUp() }
+      )
+      composerScreenRoot(
+          onNavigateUp = { navController.navigateUp() }
+      )
+
+
+  }
+}
+
+

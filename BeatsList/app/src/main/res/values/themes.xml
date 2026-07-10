@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.BeatsList" parent="Theme.MaterialComponents.Light" />
+</resources>
