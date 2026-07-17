@@ -22,6 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.navigartionsample.ui.theme.NavigartionSampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,39 +35,26 @@ class MainActivity : ComponentActivity() {
         setContent {
             NavigartionSampleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
+                    MyApp()
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun FirstScreen() {
+fun MyApp(){
 
-    val name = remember { mutableStateOf("") }
+    var navController = rememberNavController()
 
-    Column(
-        modifier=Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-
-    )
-    {
-        Text(text="This is our FirstScreen", fontSize = 24.sp)
-        Spacer(modifier=Modifier.height(16.dp))
-        OutlinedTextField(value=name.value, onValueChange = {name.value=it})
-        Button(onClick={}) {
-            Text(text="Go To Second Screen")
-        }
+    NavHost(navController = navController, startDestination = "firstscreen") {
+        composable(route="firstscreen") { FirstScreen( "") { name ->  navController.navigate("secondscreen/$name") } }
+        composable(route="secondscreen/{name}") {
+            val name = it.arguments?.getString("name") ?: "no name"
+            SecondScreen(name, { navController.navigate("firstscreen")}, {navController.navigate("thirdscreen")}) }
+        composable(route="thirdscreen") { ThirdScreen{ navController.navigate("firstscreen")  } }
     }
 
-}
 
-@Preview(showBackground = true)
-@Composable
-fun FirstScreenPreview() {
-    FirstScreen()
 }
