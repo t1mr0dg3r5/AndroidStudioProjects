@@ -16,9 +16,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SecondScreen(name: String, navigateToFirstScreen: (String) -> Unit, navigateToThirdScreen: () -> Unit ) {
+fun SecondScreen(name: String, age: String, navigateToFirstScreen: (String) -> Unit, navigateToThirdScreen: () -> Unit ) {
 
     val name = remember { mutableStateOf(name) }
+    val age = remember { mutableStateOf(age) }
 
     Column(
         modifier=Modifier
@@ -30,7 +31,7 @@ fun SecondScreen(name: String, navigateToFirstScreen: (String) -> Unit, navigate
     )
     {
         Text(text="This is the Second Screen", fontSize = 24.sp)
-        Text(text="Welcome ${name.value}", fontSize = 24.sp)
+        Text(text="Welcome ${name.value}. You are ${age.value} years old.", fontSize = 24.sp)
 
         Button(onClick={navigateToFirstScreen(name.value)}) {
             Text(text="Go To First Screen")
@@ -45,5 +46,5 @@ fun SecondScreen(name: String, navigateToFirstScreen: (String) -> Unit, navigate
 @Preview(showBackground = true)
 @Composable
 fun SecondScreenPreview() {
-    SecondScreen("Test",{}, {})
+    SecondScreen("Test","0",{}, {})
 }
