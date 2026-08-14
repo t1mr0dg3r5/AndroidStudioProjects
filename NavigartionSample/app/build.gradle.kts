@@ -1,15 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
-    namespace = "net.uk.rodgers.myrecipeapp"
-    compileSdk = 37
+    namespace = "com.example.navigartionsample"
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 1
+        }
+    }
 
     defaultConfig {
-        applicationId = "net.uk.rodgers.myrecipeapp"
+        applicationId = "com.example.navigartionsample"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -32,11 +35,9 @@ android {
     buildFeatures {
         compose = true
     }
-    compileSdkMinor = 0
 }
 
 dependencies {
-    implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
@@ -45,15 +46,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    // compose viewmodel
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
-    // image loading
-    implementation(libs.coil.compose) // from v262
-    // network calls
-    implementation(libs.retrofit) //from v290
-    //json to kotlin object mapping
-    implementation(libs.converter.gson) // from v290
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
