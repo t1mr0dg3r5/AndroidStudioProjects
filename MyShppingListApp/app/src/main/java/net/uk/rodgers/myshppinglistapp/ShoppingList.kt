@@ -98,7 +98,7 @@ fun ShoppingListApp() {
     }
     if (showDialog) {
         AlertDialog(
-            containerColor = MaterialTheme.colorScheme.inversePrimary,
+            containerColor = MaterialTheme.colorScheme.background,
             onDismissRequest = { showDialog = false },
             title = { Text(text = "Add Shopping Item") },
             confirmButton = {
